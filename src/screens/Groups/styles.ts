@@ -10,3 +10,8 @@ export const Text = styled.Text(({ theme }) => ({
   fontSize: 48,
   color: theme.COLORS.WHITE,
 }));
+
+export const GroupCardList = styled.View(() => ({
+  padding: 16,
+  gap: 8,
+}));
