@@ -5,12 +5,12 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@screens/*": ["./src/screens/*"],
-      "@storage/*": ["./src/storage/*"],
+      "@routes": ["./src/routes/index.ts"],
+      "@screens": ["./src/screens/index.ts"],
+      "@storage": ["./src/storage/index.ts"],
+      "@components": ["./src/components/index.ts"],
       "@theme": ["./src/theme/index.ts"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils": ["./src/utils/index.ts"]
     }
   }
 }
