@@ -6,9 +6,3 @@ export const Container = styled.View(({ theme }) => ({
   flex: 1,
   padding: 16,
 }));
-
-export const Text = styled.Text(({ theme }) => ({
-  fontSize: 48,
-  color: theme.COLORS.WHITE,
-  fontWeight: theme.FONT_FAMILY.BOLD,
-}));

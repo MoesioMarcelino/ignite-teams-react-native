@@ -10,6 +10,7 @@ export const StyledButton = styled.TouchableOpacity<StyledButtonProps>(
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
 
     height: 56,
     borderRadius: 6,

@@ -1,13 +1,13 @@
-import { Groups } from "@screens/Groups";
-import { ThemeProvider } from "styled-components";
 import {
-  useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
+  useFonts,
 } from "@expo-google-fonts/roboto";
+import { NewGroup } from "@screens";
+import { ThemeProvider } from "styled-components";
 
+import { Loader } from "@components";
 import { theme } from "@theme";
-import { Loader } from "@components/Loader";
 import { StatusBar } from "react-native";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      {fontLoaded ? <Groups /> : <Loader />}
+      {fontLoaded ? <NewGroup /> : <Loader />}
     </ThemeProvider>
   );
 }
