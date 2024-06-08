@@ -26,7 +26,7 @@ export function Groups() {
           <EmptyList message="Ah, você ainda não tem turmas criadas, que tal criar uma nova agora?" />
         )}
       />
-      <Button title="Criar nova turma" variant="secondary" />
+      <Button title="Criar nova turma" />
     </Container>
   );
 }
