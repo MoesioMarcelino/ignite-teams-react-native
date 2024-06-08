@@ -12,6 +12,7 @@ export const Content = styled.View(() => ({
   marginTop: 128,
   justifyContent: "center",
   alignItems: "center",
+  gap: 32,
 }));
 
 export const Icon = styled(UsersThree).attrs(({ theme }) => ({

@@ -22,4 +22,5 @@ export const StyledButton = styled.TouchableOpacity<StyledButtonProps>(
 export const StyledButtonText = styled.Text(({ theme }) => ({
   color: theme.COLORS.WHITE,
   fontSize: theme.FONT_SIZE.MD,
+  fontFamily: theme.FONT_FAMILY.BOLD,
 }));

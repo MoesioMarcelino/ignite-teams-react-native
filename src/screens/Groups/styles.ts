@@ -5,4 +5,5 @@ export const Container = styled.View(({ theme }) => ({
   backgroundColor: theme.COLORS.GRAY_600,
   flex: 1,
   padding: 16,
+  gap: 32,
 }));
