@@ -8,7 +8,7 @@ export const InputContainer = styled.TextInput.attrs(({ theme }) => ({
   fontSize: theme.FONT_SIZE.MD,
   color: theme.COLORS.WHITE,
   backgroundColor: theme.COLORS.GRAY_700,
-  width: "100%",
+  flex: 1,
   border: `1px solid ${theme.COLORS.GRAY_700}`,
   borderRadius: 6,
 }));

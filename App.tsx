@@ -3,7 +3,7 @@ import {
   Roboto_700Bold,
   useFonts,
 } from "@expo-google-fonts/roboto";
-import { NewGroup } from "@screens";
+import { Players } from "@screens";
 import { ThemeProvider } from "styled-components";
 
 import { Loader } from "@components";
@@ -20,7 +20,7 @@ export default function App() {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      {fontLoaded ? <NewGroup /> : <Loader />}
+      {fontLoaded ? <Players /> : <Loader />}
     </ThemeProvider>
   );
 }
