@@ -1,21 +1,42 @@
 import { Button, EmptyList, GroupCard, Header, Highlight } from "@components";
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { FlatList } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { getGroups } from "@storage";
+import { AppError } from "@utils";
+import { useCallback, useState } from "react";
+import { Alert, FlatList } from "react-native";
 import { Container } from "./styles";
 
 export function Groups() {
   const navigation = useNavigation();
 
-  const [groups, setGroups] = useState<string[]>([
-    "Turma 1",
-    "Turma 2",
-    "Turma 3",
-  ]);
+  const [groups, setGroups] = useState<string[]>([]);
 
   function handleNewGroup() {
     navigation.navigate("new");
   }
+
+  async function fetchAllGroups() {
+    try {
+      const groups = await getGroups();
+      setGroups(groups);
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert("Lista de turmas", error.message);
+      } else {
+        Alert.alert(
+          "Lista de turmas",
+          "Ocorreu um erro ao tentar listar todas as turmas."
+        );
+        console.log(error);
+      }
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchAllGroups();
+    }, [])
+  );
 
   return (
     <Container>
