@@ -5,7 +5,6 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": ["./src/assets/*"],
-      "@routes": ["./src/routes/index.ts"],
       "@screens": ["./src/screens/index.ts"],
       "@storage": ["./src/storage/index.ts"],
       "@components": ["./src/components/index.ts"],
