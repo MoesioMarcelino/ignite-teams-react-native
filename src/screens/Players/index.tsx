@@ -8,6 +8,7 @@ import {
   Input,
   PlayerCard,
 } from "@components";
+import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { FlatList } from "react-native";
 import {
@@ -20,16 +21,24 @@ import {
 
 const PLAYERS_LIST = [{ name: "Moésio Marcelino", team: "Time A" }];
 
+type RouteParams = {
+  group: string;
+};
+
 export function Players() {
+  const route = useRoute();
+
   const [filters, setFilters] = useState<string[]>(["Time A", "Time B"]);
   const [activeFilter, setActiveFilter] = useState("");
 
   const [players, setPlayers] =
     useState<Array<{ name: string; team: string }>>(PLAYERS_LIST);
 
+  const { group = "Nome da turma" } = route.params as RouteParams;
+
   function toggleFilter(filter: string) {
     const removeFilter = activeFilter === filter;
-    if (activeFilter === filter) {
+    if (removeFilter) {
       setActiveFilter("");
       setPlayers(PLAYERS_LIST);
       return;
@@ -44,7 +53,7 @@ export function Players() {
       <Header showBackIcon />
       <Content>
         <Highlight
-          title="Nome da turma"
+          title={group}
           subtitle="adicione a galera e separe os times"
         />
 
