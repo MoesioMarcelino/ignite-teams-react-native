@@ -7,4 +7,5 @@ export * from "./Header";
 export * from "./Highlight";
 export * from "./Input";
 export * from "./Loader";
+export * from "./Loading";
 export * from "./PlayerCard";

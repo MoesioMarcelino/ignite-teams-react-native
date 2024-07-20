@@ -12,6 +12,7 @@ export function NewGroup() {
   const navigate = useNavigation();
   const { COLORS } = useTheme();
 
+  const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState("");
 
   function handleNewGroup() {
@@ -24,6 +25,7 @@ export function NewGroup() {
         throw new AppError("O nome da turma é campo obrigatório.");
       }
 
+      setLoading(true);
       await createOneGroup(group);
       handleNewGroup();
     } catch (error) {
@@ -36,6 +38,8 @@ export function NewGroup() {
         );
         console.log(error);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -56,7 +60,7 @@ export function NewGroup() {
           onChangeText={(text) => setGroup(text)}
         />
 
-        <Button title="Criar" onPress={saveNewGroup} />
+        <Button title="Criar" onPress={saveNewGroup} disabled={loading} />
       </Content>
     </Container>
   );

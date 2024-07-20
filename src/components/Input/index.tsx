@@ -3,11 +3,17 @@ import { useTheme } from "styled-components/native";
 import { Input as InputContainer } from "./styles";
 
 type InputProps = {
-  ref?: React.LegacyRef<TextInput>;
+  inputRef?: React.RefObject<TextInput>;
 } & TextInputProps;
 
 export function Input(props: InputProps) {
   const { COLORS } = useTheme();
 
-  return <InputContainer {...props} placeholderTextColor={COLORS.GRAY_300} />;
+  return (
+    <InputContainer
+      ref={props.inputRef}
+      {...props}
+      placeholderTextColor={COLORS.GRAY_300}
+    />
+  );
 }

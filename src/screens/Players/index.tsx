@@ -35,17 +35,17 @@ type Player = {
   team: string;
 };
 
+const TEAMS = ["Time A", "Time B"];
+
 export function Players() {
   const route = useRoute();
   const navigation = useNavigation();
 
   const newPlayerRef = useRef<TextInput>(null);
 
+  const [loading, setLoading] = useState(false);
   const [playerName, setPlayerName] = useState("");
-
-  const [teams, setTeams] = useState<string[]>(["Time A", "Time B"]);
-  const [teamSelected, setTeamSelected] = useState("Time A");
-
+  const [teamSelected, setTeamSelected] = useState(TEAMS[0]);
   const [players, setPlayers] = useState<Player[]>([]);
 
   const { group = "Nome da turma" } = route.params as RouteParams;
@@ -72,6 +72,7 @@ export function Players() {
         team: teamSelected,
       } as Player;
 
+      setLoading(true);
       await savePlayerByGroup(newPlayer, group);
 
       newPlayerRef.current?.blur();
@@ -89,11 +90,14 @@ export function Players() {
         );
         console.log(error);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
   async function fetchPlayers() {
     try {
+      setLoading(true);
       const players = await getPlayersByGroupAndTeam(group, teamSelected);
       setPlayers(players);
     } catch (error) {
@@ -106,6 +110,8 @@ export function Players() {
         );
         console.log(error);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -141,7 +147,7 @@ export function Players() {
   }
 
   async function handleRemoveGroup() {
-    Alert.alert("Remover", `Deseja remover o grupo ${group}?`, [
+    Alert.alert("Remover", `Deseja remover a turma ${group}?`, [
       { text: "Não", style: "cancel", isPreferred: true },
       { text: "Sim", style: "default", onPress: removeGroupAction },
     ]);
@@ -162,7 +168,7 @@ export function Players() {
 
         <Form>
           <Input
-            ref={newPlayerRef}
+            inputRef={newPlayerRef}
             placeholder="Nome do participante"
             autoCorrect={false}
             value={playerName}
@@ -173,10 +179,10 @@ export function Players() {
           <ButtonIcon name="add" onPress={addPlayerToGroup} />
         </Form>
 
-        {teams.length > 0 && (
+        {TEAMS.length > 0 && (
           <FiltersContainer>
             <FlatList
-              data={teams}
+              data={TEAMS}
               keyExtractor={(item) => item}
               renderItem={({ item }) => (
                 <Bagde

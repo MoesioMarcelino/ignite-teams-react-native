@@ -1,4 +1,11 @@
-import { Button, EmptyList, GroupCard, Header, Highlight } from "@components";
+import {
+  Button,
+  EmptyList,
+  GroupCard,
+  Header,
+  Highlight,
+  Loading,
+} from "@components";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getGroups } from "@storage";
 import { AppError } from "@utils";
@@ -9,6 +16,7 @@ import { Container } from "./styles";
 export function Groups() {
   const navigation = useNavigation();
 
+  const [loading, setLoading] = useState(false);
   const [groups, setGroups] = useState<string[]>([]);
 
   function handleNewGroup() {
@@ -17,6 +25,7 @@ export function Groups() {
 
   async function fetchAllGroups() {
     try {
+      setLoading(true);
       const groups = await getGroups();
       setGroups(groups);
     } catch (error) {
@@ -29,6 +38,8 @@ export function Groups() {
         );
         console.log(error);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -42,18 +53,24 @@ export function Groups() {
     <Container>
       <Header />
       <Highlight title="Turmas" subtitle="jogue com a sua turma" />
-      <FlatList
-        data={groups}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <GroupCard title={item} />}
-        contentContainerStyle={{
-          gap: 8,
-          ...(groups.length === 0 && { flex: 1 }),
-        }}
-        ListEmptyComponent={() => (
-          <EmptyList message="Ah, você ainda não tem turmas criadas, que tal criar uma nova agora?" />
-        )}
-      />
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={groups}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <GroupCard title={item} />}
+          contentContainerStyle={{
+            gap: 8,
+            ...(groups.length === 0 && { flex: 1 }),
+          }}
+          ListEmptyComponent={() => (
+            <EmptyList message="Ah, você ainda não tem turmas criadas, que tal criar uma nova agora?" />
+          )}
+        />
+      )}
+
       <Button title="Criar nova turma" onPress={handleNewGroup} />
     </Container>
   );
