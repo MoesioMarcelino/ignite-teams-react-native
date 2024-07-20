@@ -1,12 +1,12 @@
 import { CaretLeft } from "phosphor-react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
-export const Container = styled.View(({ theme }) => ({
+export const Container = styled(SafeAreaView)(() => ({
   width: "100%",
   flexDirection: "row",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: 32,
 }));
 
 export const Logo = styled.Image(() => ({

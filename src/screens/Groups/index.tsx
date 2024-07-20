@@ -1,14 +1,21 @@
 import { Button, EmptyList, GroupCard, Header, Highlight } from "@components";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { FlatList } from "react-native";
 import { Container } from "./styles";
 
 export function Groups() {
+  const navigation = useNavigation();
+
   const [groups, setGroups] = useState<string[]>([
     "Turma 1",
     "Turma 2",
     "Turma 3",
   ]);
+
+  function handleNewGroup() {
+    navigation.navigate("new");
+  }
 
   return (
     <Container>
@@ -26,7 +33,7 @@ export function Groups() {
           <EmptyList message="Ah, você ainda não tem turmas criadas, que tal criar uma nova agora?" />
         )}
       />
-      <Button title="Criar nova turma" />
+      <Button title="Criar nova turma" onPress={handleNewGroup} />
     </Container>
   );
 }

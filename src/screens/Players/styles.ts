@@ -9,8 +9,6 @@ export const Container = styled.View(({ theme }) => ({
 
 export const Content = styled.View(() => ({
   marginTop: 40,
-  // justifyContent: "center",
-  // alignItems: "center",
   gap: 16,
 }));
 
@@ -20,6 +18,7 @@ export const Form = styled.View(({ theme }) => ({
   borderRadius: 6,
   gap: 16,
   alignItems: "center",
+  justifyContent: "space-between",
 }));
 
 export const FiltersContainer = styled.View(() => ({

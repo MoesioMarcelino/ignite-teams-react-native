@@ -1,14 +1,12 @@
-import { TextInputProps } from "react-native";
+import { TextInput } from "react-native";
 import styled from "styled-components/native";
 
-export const InputContainer = styled.TextInput.attrs(({ theme }) => ({
+export const Input = styled(TextInput).attrs(({ theme }) => ({
   placeholderTextColor: theme.COLORS.GRAY_300,
-}))<TextInputProps>(({ theme }) => ({
-  padding: 16,
-  fontSize: theme.FONT_SIZE.MD,
-  color: theme.COLORS.WHITE,
+}))(({ theme }) => ({
   backgroundColor: theme.COLORS.GRAY_700,
-  flex: 1,
-  border: `1px solid ${theme.COLORS.GRAY_700}`,
   borderRadius: 6,
+  border: `1px solid ${theme.COLORS.GRAY_700}`,
+  fontSize: theme.FONT_SIZE.MD,
+  padding: 16,
 }));
